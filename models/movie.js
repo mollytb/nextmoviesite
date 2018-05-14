@@ -1,8 +1,29 @@
 module.exports = function(sequelize, DataTypes) {
   var Movie = sequelize.define("Movie", {
     // Giving the Movie model a name of type STRING
-    name: DataTypes.STRING
+    color: DataTypes.STRING,
+    director_name: DataTypes.STRING,
+    duration: DataTypes.STRING,
+    actor_2_name: DataTypes.STRING,
+    gross: DataTypes.STRING,
+    genres: DataTypes.STRING,
+    actor_1_name: DataTypes.STRING,    
+    movie_title: DataTypes.STRING,
+    actor_3_name: DataTypes.STRING,
+    plot_keywords: DataTypes.STRING,
+    movie_imdb_link: DataTypes.STRING,
+    language: DataTypes.STRING,
+    country: DataTypes.STRING,
+    content_rating: DataTypes.STRING,
+    budget: DataTypes.STRING,
+    title_year: DataTypes.STRING,
+    imdb_score: DataTypes.STRING,
+    aspect_ratio: DataTypes.STRING
   });
+
+  // Table headings
+  //  color,director_name,duration,actor_2_name,gross,genres,actor_1_name,movie_title,actor_3_name,plot_keywords,movie_imdb_link,language,country,content_rating,budget,title_year,imdb_score,aspect_ratio
+
 
   Movie.associate = function(models) {
     // Associating Movie with Reviews

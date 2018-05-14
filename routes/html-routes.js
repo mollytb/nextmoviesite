@@ -32,4 +32,9 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/movie-manager.html"));
   });
 
+ // members route loads member-manager.html
+ app.get("/movies", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/movie-manager.html"));
+});
+
 };

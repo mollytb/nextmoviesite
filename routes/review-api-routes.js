@@ -15,8 +15,8 @@ module.exports = function(app) {
   // GET route for getting all of the reviews
   app.get("/api/reviews", function(req, res) {
     var query = {};
-    if (req.query.author_id) {
-      query.MovieId = req.query.author_id;
+    if (req.query.movie_id) {
+      query.MovieId = req.query.movie_id;
     }
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join

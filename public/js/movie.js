@@ -18,16 +18,16 @@ $(document).ready(function() {
     if (!nameInput.val().trim().trim()) {
       return;
     }
-    // Calling the upsertMovie function and passing in the value of the name input
-    upsertMovie({
-      name: nameInput
+    // Calling the insertMovie function and passing in the value of the name input
+    insertMovie({
+      movie_title: nameInput
         .val()
         .trim()
     });
   }
 
   // A function for creating an movie. Calls getMovies upon completion
-  function upsertMovie(movieData) {
+  function insertMovie(movieData) {
     $.post("/api/movies", movieData)
       .then(getMovies);
   }
@@ -36,7 +36,7 @@ $(document).ready(function() {
   function createMovieRow(movieData) {
     var newTr = $("<tr>");
     newTr.data("movie", movieData);
-    newTr.append("<td>" + movieData.name + "</td>");
+    newTr.append("<td>" + movieData.movie_title + "</td>");
     newTr.append("<td> " + movieData.Reviews.length + "</td>");
     newTr.append("<td><a href='/blog?movie_id=" + movieData.id + "'>Go to Reviews</a></td>");
     newTr.append("<td><a href='/cms?movie_id=" + movieData.id + "'>Create a Review</a></td>");
