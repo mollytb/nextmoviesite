@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
     // Giving the Movie model a name of type STRING
     color: DataTypes.STRING,
     director_name: DataTypes.STRING,
-    duration: DataTypes.STRING,
+    duration: DataTypes.INT,
     actor_2_name: DataTypes.STRING,
     gross: DataTypes.STRING,
     genres: DataTypes.STRING,
@@ -15,10 +15,10 @@ module.exports = function(sequelize, DataTypes) {
     language: DataTypes.STRING,
     country: DataTypes.STRING,
     content_rating: DataTypes.STRING,
-    budget: DataTypes.STRING,
-    title_year: DataTypes.STRING,
-    imdb_score: DataTypes.STRING,
-    aspect_ratio: DataTypes.STRING
+    budget: DataTypes.INT,
+    title_year: DataTypes.YEAR,
+    imdb_score: DataTypes.INT,
+    aspect_ratio: DataTypes.INT
   });
 
   // Table headings
