@@ -15,8 +15,8 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Review.associate = function(models) {
-    // We're saying that a Review should belong to an Movie
-    // A Review can't be created without an Movie due to the foreign key constraint
+    // We're saying that a Review should belong to a Movie
+    // A Review can't be created without a Movie due to the foreign key constraint
     Review.belongsTo(models.Movie, {
       foreignKey: {
         allowNull: false
