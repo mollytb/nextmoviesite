@@ -59,7 +59,7 @@ $(document).ready(function() {
   // Submits a new review and brings user to blog page upon completion
   function submitReview(review) {
     console.log('submitReview (' + review + ') called'); 
-    $.review("/api/reviews", review, function() {
+    $.post("/api/reviews", review, function() {
       window.location.href = "/blog";
     });
   }
@@ -67,7 +67,7 @@ $(document).ready(function() {
   // Gets review data for the current review if we're editing, or if we're adding to an movie's existing reviews
   function getReviewData(id, type) {
     var queryUrl;
-    console.log('getReviewData ' + id + ',' + type +')';
+    console.log('getReviewData ' + id + ',' + type +')');
     switch (type) {
     case "review":
       queryUrl = "/api/reviews/" + id;
@@ -120,7 +120,7 @@ $(document).ready(function() {
   function createMovieRow(movie) {
     var listOption = $("<option>");
     listOption.attr("value", movie.id);
-    listOption.text(movie.name);
+    listOption.text(movie.movie_title);
     return listOption;
   }
 
