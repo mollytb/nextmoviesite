@@ -1,12 +1,12 @@
 {
-  “development”: {
-   “username”: “b16f1e6c7814f4”,
-   “password”: “51679a31”,
-   “database”: “heroku_8e7349c1dbec625”,
-   “host”: “us-cdbr-iron-east-04.cleardb.net”,
-   “dialect”: “mysql”
-
-},
+  "development": {
+    "username": "b16f1e6c7814f4",
+    "password": “51679a31”,
+    "database": “heroku_8e7349c1dbec625”,
+    "host": “us-cdbr-iron-east-04.cleardb.net”,
+    "dialect": "mysql"
+ 
+ },
   "test": {
     "username": "root",
     "password": null,
