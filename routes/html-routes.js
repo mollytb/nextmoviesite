@@ -33,8 +33,8 @@ module.exports = function(app) {
   });
 
  // members route loads member-manager.html
- app.get("/movies", function(req, res) {
-  res.sendFile(path.join(__dirname, "../public/movie-manager.html"));
+ app.get("/members", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/member-manager.html"));
 });
 
 };

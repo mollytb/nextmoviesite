@@ -10,6 +10,7 @@ $(document).ready(function() {
   var url = window.location.search;
   var reviewId;
   var movieId;
+  var memberId;
   // Sets a flag for whether or not we're updating a review to be false initially
   var updating = false;
 
@@ -18,6 +19,11 @@ $(document).ready(function() {
   if (url.indexOf("?review_id=") !== -1) {
     reviewId = url.split("=")[1];
     getReviewData(reviewId, "review");
+  }
+  // Otherwise if we have an movie_id in our url, preset the movie select box to be our Movie
+  else if (url.indexOf("?member_id=") !== -1) {
+    memberId = url.split("=")[1];
+    getMemberData(memberId, "member");
   }
   // Otherwise if we have an movie_id in our url, preset the movie select box to be our Movie
   else if (url.indexOf("?movie_id=") !== -1) {
@@ -42,7 +48,8 @@ $(document).ready(function() {
       body: bodyInput
         .val()
         .trim(),
-      MovieId: movieSelect.val()
+      MovieId: movieSelect.val(),
+      MemberId: memberSelect.val()
     };
 
     // If we're updating a review run updateReview to update a review
@@ -75,6 +82,8 @@ $(document).ready(function() {
     case "movie":
       queryUrl = "/api/movies/" + id;
       break;
+    case "member":
+      queryUrl = "/api/members/" + id;
     default:
       return;
     }
@@ -85,6 +94,7 @@ $(document).ready(function() {
         titleInput.val(data.title);
         bodyInput.val(data.body);
         movieId = data.MovieId || data.id;
+        memberId = data.MemberId;
         // If we have a review with this id, set a flag for us to know to update the review
         // when we hit submit
         updating = true;
@@ -123,6 +133,39 @@ $(document).ready(function() {
     listOption.text(movie.movie_title);
     return listOption;
   }
+
+// A function to get Members and then render our list of Movies
+function getMembers() {
+  console.log('getMembers called');
+  $.get("/api/movies", renderMovieList);
+}
+// Function to either render a list of movies, or if there are none, direct the user to the page
+// to create an movie first
+function renderMemberList(data) {
+  console.log('renderMemberList called');
+  if (!data.length) {
+    window.location.href = "/members";
+  }
+  $(".hidden").removeClass("hidden");
+  var rowsToAdd = [];
+  for (var i = 0; i < data.length; i++) {
+    rowsToAdd.push(createMemberRow(data[i]));
+  }
+  memberSelect.empty();
+  console.log(rowsToAdd);
+  console.log(memberSelect);
+  memberSelect.append(rowsToAdd);
+  memberSelect.val(memberId);
+}
+
+// Creates the movie options in the dropdown
+function createMemberRow(movie) {
+  var listOption = $("<option>");
+  listOption.attr("value", member.id);
+  listOption.text(member.name);
+  return listOption;
+}
+
 
   // Update a given review, bring user to the blog page when done
   function updateReview(review) {
