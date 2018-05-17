@@ -1,4 +1,5 @@
 const router = require('express').Router();
+var path = require("path");
 
 const authCheck = (req, res, next) => {
     if(!req.user){
@@ -11,7 +12,8 @@ const authCheck = (req, res, next) => {
 };
 
 router.get('/', authCheck, (req,res) => {
-    res.render('profile', { user: req.user });
+	console.log('profile');
+    res.sendFile(path.join(__dirname, "../public/profile.html"));
 });
 
 module.exports = router;

@@ -25,6 +25,9 @@ app.use(cookieSession({
     keys: ['keys.session.cookieKey']
 }));
 
+// Set view engine
+app.set('view engine', )
+
 // Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
