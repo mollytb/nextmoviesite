@@ -32,14 +32,6 @@ module.exports = function(app) {
     });
   });
 
-  app.delete("/api/movies/:id", function(req, res) {
-    db.Movie.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(dbMovie) {
-      res.json(dbMovie);
-    });
-  });
+
 
 };
