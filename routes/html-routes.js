@@ -19,7 +19,7 @@ module.exports = function(app) {
 
   // cms route loads cms.html
   app.get("/cms", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/cms.html"));
+    res.sendFile(path.join(__dirname, "../public/review.html"));
   });
 
   // blog route loads blog.html
