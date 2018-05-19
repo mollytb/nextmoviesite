@@ -9,7 +9,6 @@ $(document).ready(function() {
   $(document).on("click", ".delete-movie", handleDeleteButtonPress);
 
   // Getting the initial list of Movies
-  getMovies();
 
   // A function to handle what happens when the form is submitted to create a new Movie
   function handleMovieFormSubmit(event) {
@@ -25,6 +24,7 @@ $(document).ready(function() {
         .trim()
     });
   }
+  getMovies();
 
   // A function for creating an movie. Calls getMovies upon completion
   function insertMovie(movieData) {
