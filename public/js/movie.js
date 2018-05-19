@@ -40,7 +40,7 @@ $(document).ready(function() {
     var newTr = $("<tr>");
     newTr.data("movie", movieData);
     newTr.append("<td>" + movieData.movie_title + "</td>");
-    newTr.append("<td>" + movieData.actor_1_name + movieData.actor_2_name + movieData.actor_3_name + "</td>");
+    newTr.append("<td>" + movieData.actor_1_name  + ", " + movieData.actor_2_name + ", " + movieData.actor_3_name  + ", " + "</td>");
     newTr.append("<td>" + movieData.director_name + "</td>");
     newTr.append("<td>" + movieData.movie_genres + "</td>");
     newTr.append("<td>" + movieData.imdb_score + "</td>");
@@ -48,6 +48,7 @@ $(document).ready(function() {
     
     if( movieData.Reviews !=null) 
       newTr.append("<td> " + movieData.Reviews.length + "</td>");
+ 
  
     return newTr;
   }
