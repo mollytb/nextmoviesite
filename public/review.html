@@ -26,13 +26,13 @@
             <i class="fa fa-eye w3-xxlarge"></i>
             <p>RANDOM MOVIES</p>
         </a>
-        <a href="/search" class="w3-bar-item w3-button w3-padding-large w3-black">
+        <a href="/search" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
             <i class="fa fa-search w3-xxlarge"></i>
             <p>SEARCH</p>
         </a>
-        <a href="/blog" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+        <a href="/review" class="w3-bar-item w3-button w3-padding-large w3-black">
             <i class="fa fa-envelope w3-xxlarge"></i>
-            <p>BLOG</p>
+            <p>REVIEW</p>
         </a>
     </nav>
 
@@ -55,17 +55,22 @@
         </header>
 
         <!-- About Section -->
-        <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
-            <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about" style="max-width:500px;margin:auto">
-                <h2 class="w3-text-light-grey">Search our database!</h2>
-                <form class="example" action="action_page.php">
-                    <input type="text" placeholder="Search here..." name="search">
-                    <button type="submit">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </form>
-            </div>
-
+        <div class="row">
+			<div class="col-md-6 offset-md-3">
+				<form id="cms">
+					<div class="form-group">
+						<label for="title">Review for: <span class= "w3-text-light-grey" id="reviewTitle">This is a Movie Title!</span></label>
+						<br />
+						<label for="body">Body:</label>
+						<textarea placeholder="Review Body" class="form-control" rows="10" id="body"></textarea>
+						<div class="form-group">
+						</div>
+						<br />
+						<button type="submit" class="btn btn-success submit">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
             <!-- Footer -->
             <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
                 <i class="fa fa-facebook-official w3-hover-opacity"></i>
