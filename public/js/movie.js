@@ -45,6 +45,7 @@ $(document).ready(function() {
     newTr.append("<td>" + movieData.movie_genres + "</td>");
     newTr.append("<td>" + movieData.imdb_score + "</td>");
     newTr.append("<td><a href='/review?movie_id=" + movieData.id + "'>Reviews</a></td>");
+    ewTr.append("<td><a href='https://www.justwatch.com/us/search?q=" + encodeURIcomponent(movieData.movie_title) + "'>Just Watch</a></td>");
     
     if( movieData.Reviews !=null) 
       newTr.append("<td> " + movieData.Reviews.length + "</td>");
