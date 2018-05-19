@@ -3,12 +3,16 @@ $(document).ready(function() {
   var nameInput = $("#movie-name");
   var movieList = $("tbody");
   var movieContainer = $(".movie-container");
+  var searchInput = $("#searchInput")
   // Adding event listeners to the form to create a new object, and the button to delete
   // an Movie
   getMovies();
   $(document).on("submit", "#movie-form", handleMovieFormSubmit);
   $(document).on("click", ".delete-movie", handleDeleteButtonPress);
-  $(document).on("click", "#search", SearchMovies);
+  $(document).on("click", "#search", function(event){
+    event.preventDefault(); 
+    SearchMovies()
+  });
 
 
   // Getting the initial list of Movies
@@ -45,7 +49,7 @@ $(document).ready(function() {
     newTr.append("<td>" + movieData.movie_genres + "</td>");
     newTr.append("<td>" + movieData.imdb_score + "</td>");
     newTr.append("<td><a href='/review?movie_id=" + movieData.id + "'>Reviews</a></td>");
-    newTr.append("<td><a href='https://www.justwatch.com/us/search?q=" + encodeURIcomponent(movieData.movie_title) + "'>Just Watch</a></td>");
+    newTr.append("<td><a href='https://www.justwatch.com/us/search?q=" + encodeURIComponent(movieData.movie_title) + "'>Just Watch</a></td>");
     
     if( movieData.Reviews !=null) 
       newTr.append("<td> " + movieData.Reviews.length + "</td>");
@@ -65,14 +69,17 @@ $(document).ready(function() {
       nameInput.val("");
     });
   }
-  function SearchMovies(event) {
+  function SearchMovies() {
+  
     $.get("/api/movies/:id", function(data) {
+      //searchInput.val.trim();
+
       var rowsToAdd = [];
       for (var i = 0; i < data.length; i++) {
         rowsToAdd.push(createMovieRow(data[i]));
       }
       renderMovieList(rowsToAdd);
-      nameInput.val("");
+      searchInput.val("");
     });
   }
 
@@ -84,8 +91,10 @@ $(document).ready(function() {
       console.log(rows);
       movieList.prepend(rows);
     }
+
     else {
-      renderEmpty();
+      console.log(rows);
+      //renderEmpty();
     }
   }
 
