@@ -42,8 +42,7 @@ $(document).ready(function() {
     newTr.append("<td>" + movieData.movie_title + "</td>");
     if( movieData.Reviews !=null) 
       newTr.append("<td> " + movieData.Reviews.length + "</td>");
-    newTr.append("<td><a href='/blog?movie_id=" + movieData.id + "'>Go to Reviews</a></td>");
-    newTr.append("<td><a href='/cms?movie_id=" + movieData.id + "'>Create a Review</a></td>");
+    newTr.append("<td><a href='/review?movie_id=" + movieData.id + "'>Go to Reviews</a></td>");
  
     return newTr;
   }
