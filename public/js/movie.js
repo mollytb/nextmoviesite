@@ -5,8 +5,11 @@ $(document).ready(function() {
   var movieContainer = $(".movie-container");
   // Adding event listeners to the form to create a new object, and the button to delete
   // an Movie
+  getMovies();
   $(document).on("submit", "#movie-form", handleMovieFormSubmit);
   $(document).on("click", ".delete-movie", handleDeleteButtonPress);
+  $(document).on("click", "#search", SearchMovies);
+
 
   // Getting the initial list of Movies
 
@@ -26,7 +29,7 @@ $(document).ready(function() {
   }
   getMovies();
 
-  // A function for creating an movie. Calls getMovies upon completion
+  // A function for creating a movie. Calls getMovies upon completion
   function insertMovie(movieData) {
     $.post("/api/movies", movieData)
       .then(getMovies);
@@ -41,13 +44,23 @@ $(document).ready(function() {
       newTr.append("<td> " + movieData.Reviews.length + "</td>");
     newTr.append("<td><a href='/blog?movie_id=" + movieData.id + "'>Go to Reviews</a></td>");
     newTr.append("<td><a href='/cms?movie_id=" + movieData.id + "'>Create a Review</a></td>");
-    newTr.append("<td><a style='cursor:pointer;color:red' class='delete-movie'>Delete Movie</a></td>");
+ 
     return newTr;
   }
 
   // Function for retrieving movies and getting them ready to be rendered to the page
   function getMovies() {
     $.get("/api/movies", function(data) {
+      var rowsToAdd = [];
+      for (var i = 0; i < data.length; i++) {
+        rowsToAdd.push(createMovieRow(data[i]));
+      }
+      renderMovieList(rowsToAdd);
+      nameInput.val("");
+    });
+  }
+  function SearchMovies(event) {
+    $.get("/api/movies/:id", function(data) {
       var rowsToAdd = [];
       for (var i = 0; i < data.length; i++) {
         rowsToAdd.push(createMovieRow(data[i]));
@@ -74,7 +87,7 @@ $(document).ready(function() {
   function renderEmpty() {
     var alertDiv = $("<div>");
     alertDiv.addClass("alert alert-danger");
-    alertDiv.text("You must create an Movie before you can create a Review.");
+    alertDiv.text("You must create a Movie before you can create a Review.");
     movieContainer.append(alertDiv);
   }
 

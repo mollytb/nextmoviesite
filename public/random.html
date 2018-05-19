@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<script src="https://code.jquery.com/jquery.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css" media="screen" title="no title">
 <link async href="http://fonts.googleapis.com/css?family=Warnes" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"
@@ -59,48 +60,48 @@
         <!-- About Section -->
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <table style="width:100%">
-                    <tr>
-                        <th>Title</th>
-                        <th>Actors</th>
-                        <th>Director</th>
-                        <th>Genre</th>
-                        <th>IMDB Rating</th>
-                        <th>User Reviews</th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
+                <div class="movie-container">
+                    <table class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Actors</th>
+                                <th>Director</th>
+                                <th>Genre</th>
+                                <th>IMDB Rating</th>
+                                <th>User Reviews</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="form-row">
+                                <form id="movie-form">
+
+
+                                    </td>
+                                    <td>
+                                    </td>
+                                </form>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            <!-- Footer -->
+            <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+                <i class="fa fa-facebook-official w3-hover-opacity"></i>
+                <i class="fa fa-instagram w3-hover-opacity"></i>
+                <i class="fa fa-snapchat w3-hover-opacity"></i>
+                <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+                <i class="fa fa-twitter w3-hover-opacity"></i>
+                <p class="w3-medium">Powered by
+                    <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a>
+                </p>
+                <!-- End footer -->
+            </footer>
+
+            <!-- END PAGE CONTENT -->
         </div>
-        <!-- Footer -->
-        <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
-            <i class="fa fa-facebook-official w3-hover-opacity"></i>
-            <i class="fa fa-instagram w3-hover-opacity"></i>
-            <i class="fa fa-snapchat w3-hover-opacity"></i>
-            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-            <i class="fa fa-twitter w3-hover-opacity"></i>
-            <p class="w3-medium">Powered by
-                <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a>
-            </p>
-            <!-- End footer -->
-        </footer>
-
-        <!-- END PAGE CONTENT -->
-    </div>
-
+        <script src="js/movie.js" type="text/javascript"></script>
 </body>
 
 </html>
