@@ -8,11 +8,10 @@ module.exports = function (app) {
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Review
     db.Movie.findAll({
-      where: {
-        imdb_score: {
-          [gt]: 9
-        },
-      }
+      order: [
+      [Sequelize.fn('RAND')]
+    ],
+      limit: 3
       //   include: [db.Review]
     }).then(function (dbMovie) {
       res.json(dbMovie);
@@ -23,20 +22,7 @@ module.exports = function (app) {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Review
-    db.Movie.findOne({
-      where: {
-        movie_title: req.params.id
-      },
-      //      include: [db.Review]
-    }).then(function (dbMovie) {
-      res.json(dbMovie);
-    });
-  });
-  app.get("/api/movies/:id", function (req, res) {
-    // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Review
-    db.Movie.findOne({
+    db.Movie.findAll({
       where: {
         [or]: [{
             actor_1_name: req.params.id
@@ -46,6 +32,12 @@ module.exports = function (app) {
           },
           {
             actor_3_name: req.params.id
+          },
+          {
+            director_name: req.params.id
+          },
+          {
+            movie_title: req.params.id
           }
         ]
 
@@ -63,14 +55,6 @@ module.exports = function (app) {
     });
   });
 
-  app.delete("/api/movies/:id", function (req, res) {
-    db.Movie.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function (dbMovie) {
-      res.json(dbMovie);
-    });
-  });
+
 
 };
