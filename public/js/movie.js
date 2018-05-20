@@ -11,7 +11,7 @@ $(document).ready(function() {
   $(document).on("click", ".delete-movie", handleDeleteButtonPress);
   $(document).on("click", "#search", function(event){
     event.preventDefault(); 
-    SearchMovies()
+   
   });
 
 
@@ -69,19 +69,7 @@ $(document).ready(function() {
       nameInput.val("");
     });
   }
-  function SearchMovies() {
-  
-    $.get("/api/movies/:id", function(data) {
-      //searchInput.val.trim();
 
-      var rowsToAdd = [];
-      for (var i = 0; i < data.length; i++) {
-        rowsToAdd.push(createMovieRow(data[i]));
-      }
-      renderMovieList(rowsToAdd);
-      searchInput.val("");
-    });
-  }
 
   // A function for rendering the list of movies to the page
   function renderMovieList(rows) {
