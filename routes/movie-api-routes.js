@@ -7,7 +7,7 @@ module.exports = function (app) {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Review
-    console.log("hello!!!")
+    console.log("Running Random 3 Query!!!");
     db.Movie.findAll({
       order: [
       [Sequelize.fn('RAND')]
@@ -23,6 +23,7 @@ module.exports = function (app) {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Review
+    console.log("Running Search Query!!!");
     db.Movie.findAll({
       where: {
         [or]: [{
@@ -45,8 +46,9 @@ module.exports = function (app) {
       }
 
       //      include: [db.Review]
-    }).then(function (dbMovie) {
+    }).catch((err) => console.log(err)).then(function (dbMovie) {
       res.json(dbMovie);
+      console.log(res.json(dbMovie.movie_title));
     });
   });
 
