@@ -3,7 +3,7 @@ $(document).ready(function() {
   var nameInput = $("#movie-name");
   var movieList = $("tbody");
   var movieContainer = $(".movie-container");
-  var searchInput = $("#searchInput")
+  
   // Adding event listeners to the form to create a new object, and the button to delete
   // an Movie
   getMovies();
