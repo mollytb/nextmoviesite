@@ -32,9 +32,15 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/search.html"));
   });
 
- // members route loads member-manager.html
- app.get("/members", function(req, res) {
-  res.sendFile(path.join(__dirname, "../public/member-manager.html"));
-});
+  // search route loads cms.html (whioh handles adding a review)
+  app.get("/cms", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/cms.html"));
+  });
+
+  // members route loads member-manager.html
+  // TBD - Review w Martin to see if it is needed by login
+//  app.get("/members", function(req, res) {
+//    res.sendFile(path.join(__dirname, "../public/member-manager.html"));
+//  });
 
 };

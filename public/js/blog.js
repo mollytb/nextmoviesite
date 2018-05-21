@@ -2,7 +2,7 @@ $(document).ready(function() {
   /* global moment */
 
   // blogContainer holds all of our reviews
-  var blogContainer = $(".blog-container");
+  var blogContainer = $(".review-container");
   var reviewCategorySelect = $("#category");
   // Click events for the edit and delete buttons
   $(document).on("click", "button.delete", handleReviewDelete);
