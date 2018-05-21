@@ -6,13 +6,15 @@ var searchInput = "avatar";
     
 
     $("#search").on("click", function (event) {
+        event.preventDefault();
         var searchInput = $("#searchInput")
             .val()
             .trim();
-            searchInput = searchInput.replace(/\s+/g, "").toLowerCase();
-        event.preventDefault();
+        searchInput = searchInput.replace(/\s+/g, "").toLowerCase();
+        //searchInput = searchInput.stringify();
+
         console.log(searchInput)
-        SearchMovies();
+        SearchMovies(searchInput);
         
 
     });
@@ -39,23 +41,26 @@ function createMovieRow(movieData) {
     return newTr;
 }
 
-function SearchMovies() {
+function SearchMovies(searchInput) {
+    console.log(searchInput);
 
     $.get("/api/movies/" + searchInput, function (data, err, cb) {
         //searchInput.val.trim();
-        console.log(searchInput);
         console.log(data);
         var rowsToAdd = [];
         for (var i = 0; i < data.length; i++) {
             rowsToAdd.push(createMovieRow(data[i]));
         }
-        createMovieRow();
+       // createMovieRow(data);
         renderMovieList(rowsToAdd);
-        nameInput.val("");
+        //nameInput.val("");
     });
 }
+
 // A function for rendering the list of movies to the page
 function renderMovieList(rows) {
+    var movieList = $("tbody");
+    var movieContainer = $(".movie-container");
     movieList.children().not(":last").remove();
     movieContainer.children(".alert").remove();
     if (rows.length) {
