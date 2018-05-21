@@ -10,7 +10,7 @@ $(document).ready(function() {
   var url = window.location.search;
   var reviewId;
   var movieId;
-  var memberId;
+//  var memberId;
   // Sets a flag for whether or not we're updating a review to be false initially
   var updating = false;
 
@@ -37,20 +37,26 @@ $(document).ready(function() {
   function handleFormSubmit(event) {
     event.preventDefault();
     // Wont submit the review if we are missing a body, title, or movie
-    if (!titleInput.val().trim() || !bodyInput.val().trim() || !movieSelect.val()) {
+  //  var titleField = titleInput.val().trim();
+    var bodyField =  bodyInput.val().trim();
+    var movieField = movieSelect.val().trim();
+
+    if (!movieField || !bodyField ) {
       return;
     }
     // Constructing a newReview object to hand to the database
     var newReview = {
-      title: titleInput
+      title: movieSelect
         .val()
         .trim(),
       body: bodyInput
         .val()
         .trim(),
-      MovieId: movieSelect.val(),
-      MemberId: memberSelect.val()
     };
+    // Note: The title field is re-purposed to hol the movie id
+    //       A seperated MoviesID foreign Key field was orignally designed.
+    //       This implementation is an interim solution.
+    //       The MemberID field commented out was also included
 
     // If we're updating a review run updateReview to update a review
     // Otherwise run submitReview to create a whole new review
@@ -67,7 +73,7 @@ $(document).ready(function() {
   function submitReview(review) {
     console.log('submitReview (' + review + ') called'); 
     $.post("/api/reviews", review, function() {
-      window.location.href = "/blog";
+      window.location.href = "/review";
     });
   }
 
@@ -82,8 +88,8 @@ $(document).ready(function() {
     case "movie":
       queryUrl = "/api/movies/" + id;
       break;
-    case "member":
-      queryUrl = "/api/members/" + id;
+ //   case "member":
+ //     queryUrl = "/api/members/" + id;
     default:
       return;
     }
@@ -94,7 +100,7 @@ $(document).ready(function() {
         titleInput.val(data.title);
         bodyInput.val(data.body);
         movieId = data.MovieId || data.id;
-        memberId = data.MemberId;
+//        memberId = data.MemberId;
         // If we have a review with this id, set a flag for us to know to update the review
         // when we hit submit
         updating = true;
@@ -135,39 +141,39 @@ $(document).ready(function() {
   }
 
 // A function to get Members and then render our list of Movies
-function getMembers() {
-  console.log('getMembers called');
-  $.get("/api/movies", renderMovieList);
-}
-// Function to either render a list of movies, or if there are none, direct the user to the page
-// to create an movie first
-function renderMemberList(data) {
-  console.log('renderMemberList called');
-  if (!data.length) {
-    window.location.href = "/members";
-  }
-  $(".hidden").removeClass("hidden");
-  var rowsToAdd = [];
-  for (var i = 0; i < data.length; i++) {
-    rowsToAdd.push(createMemberRow(data[i]));
-  }
-  memberSelect.empty();
-  console.log(rowsToAdd);
-  console.log(memberSelect);
-  memberSelect.append(rowsToAdd);
-  memberSelect.val(memberId);
-}
+// function getMembers() {
+//  console.log('getMembers called');
+//  $.get("/api/movies", renderMovieList);
+//}
+//// Function to either render a list of movies, or if there are none, direct the user to the page
+//// to create an movie first
+//function renderMemberList(data) {
+//  console.log('renderMemberList called');
+//  if (!data.length) {
+//    window.location.href = "/members";
+//  }
+//  $(".hidden").removeClass("hidden");
+//  var rowsToAdd = [];
+//  for (var i = 0; i < data.length; i++) {
+//    rowsToAdd.push(createMemberRow(data[i]));
+//  }
+//  memberSelect.empty();
+//  console.log(rowsToAdd);
+//  console.log(memberSelect);
+//  memberSelect.append(rowsToAdd);
+//  memberSelect.val(memberId);
+//}
 
-// Creates the movie options in the dropdown
-function createMemberRow(movie) {
-  var listOption = $("<option>");
-  listOption.attr("value", member.id);
-  listOption.text(member.name);
-  return listOption;
-}
+//// Creates the movie options in the dropdown
+//function createMemberRow(movie) {
+//  var listOption = $("<option>");
+//  listOption.attr("value", member.id);
+//  listOption.text(member.name);
+//  return listOption;
+//}
 
 
-  // Update a given review, bring user to the blog page when done
+  // Update a given review, bring user to the reviews page when done
   function updateReview(review) {
     $.ajax({
       method: "PUT",
@@ -175,7 +181,7 @@ function createMemberRow(movie) {
       data: review
     })
       .then(function() {
-        window.location.href = "/blog";
+        window.location.href = "/review";
       });
   }
 });

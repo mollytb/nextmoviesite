@@ -54,7 +54,6 @@ $(document).ready(function() {
     if( movieData.Reviews !=null) 
       newTr.append("<td> " + movieData.Reviews.length + "</td>");
  
- 
     return newTr;
   }
 
@@ -82,7 +81,7 @@ $(document).ready(function() {
 
     else {
       console.log(rows);
-      //renderEmpty();
+      renderEmpty();
     }
   }
 
@@ -102,6 +101,6 @@ $(document).ready(function() {
       method: "DELETE",
       url: "/api/movies/" + id
     })
-      .then(getMovies);
+      .then(getMovies());
   }
 });
