@@ -6,7 +6,7 @@ $(document).ready(function() {
   var movieSelect = $("#movies");
   // Adding event listeners to the form to create a new object, and the button to delete
   // an review
-//  getReviews(movieSelect);
+  //  getReviews(movieSelect);
   $(document).on("submit", "#review-form", handleReviewFormSubmit);
   $(document).on("click", ".delete-review", handleDeleteButtonPress);
 
@@ -17,6 +17,22 @@ $(document).ready(function() {
     if (!movieSelect.val().trim().trim()) {
       return;
     }
+
+    // The code below handles the case where we want to get blog posts for a specific author
+    // Looks for a query param in the url for author_id
+    var url = window.location.search;
+    var movieId;
+    if (url.indexOf("?movie_id=") !== -1) {
+      movieId = url.split("=")[1];
+      getReviews(movieId);
+    }
+    // If there's no movieId we just get all reviews as usual
+    else {
+      getReviewss();
+    }
+  }
+
+
     // Calling the insertReview function and passing in the value of the name input
     inputReview(movieSelect.val());
 
@@ -25,10 +41,45 @@ $(document).ready(function() {
     // the actual creation of reviews
     // As it currently supports the
     // the fields for inputing text
-    // There is probable a better way
+    // There is probably a better way
     // To do this, but it works for now...
 
-  }
+    var searchInput = "avatar";
+    //var movieID = $("#searchInput");
+    //console.log(searchInput);
+    
+
+    $("#search").on("click", function (event) {
+        event.preventDefault();
+        var searchInput = $("#searchInput")
+            .val()
+            .trim();
+        searchInput = searchInput.replace(/\s+/g, "").toLowerCase();
+        //searchInput = searchInput.stringify();
+
+        console.log(searchInput)
+        getReviews(searchInput);    
+    });
+
+ //   function getReviews(movie) {
+ //     console.log(movie);
+ //     movieId = movie || "";
+ //     if (movieId) {
+ //       movieId = "/?movie_id=" + movieId;
+ //     }  
+ //     $.get("/api/reviews" + movieId, function (data, err, cb) {
+ //         //searchInput.val.trim();
+ //         console.log(data);
+ //         var rowsToAdd = [];
+ //         for (var i = 0; i < data.length; i++) {
+ //             rowsToAdd.push(createReviewRow(data[i]));
+ //         }
+ //        // createMovieRow(data);
+ //         renderReviewList(rowsToAdd);
+ //         //nameInput.val("");
+ //     });
+ //   }
+ // }
 
   // Getting the initial list of Reviews
   getReviews();
@@ -57,6 +108,16 @@ $(document).ready(function() {
     newTr.append("<td><a action=DELETE href='/review?review_id=" + reviewData.id + "'>Delete Review</a></td>");   
     return newTr;
   }
+
+  function findMovieTitle(id) {
+    console.log(id);
+
+    $.get("/api/movies/" + id, function (movieData, err, cb) {
+        return movieData.movie_title;
+    });
+  }
+
+
 
   // Function for retrieving all reviews or one review for a certain movie
   function getReviews(movie) {
@@ -101,7 +162,7 @@ $(document).ready(function() {
     var query = window.location.search;
     var partial = "";
     if (movieSelect.val()) {
-      partial = " for Movie #" + movieSelect.val();
+      partial = " for Movie Title" + movieSelect.val();
     }
 
     var message = $("<h2>");
@@ -118,7 +179,6 @@ $(document).ready(function() {
     $.ajax({
       method: "DELETE",
       url: "/api/reviews/" + id
-    })
-      .then(getReviews);
+    }).then(getReviews);
   }
 });

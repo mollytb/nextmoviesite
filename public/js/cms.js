@@ -37,21 +37,16 @@ $(document).ready(function() {
   function handleFormSubmit(event) {
     event.preventDefault();
     // Wont submit the review if we are missing a body, title, or movie
-  //  var titleField = titleInput.val().trim();
-    var bodyField =  bodyInput.val().trim();
-    var movieField = movieSelect.val().trim();
+    var bodyField = $("#body").val().trim();
+    var movieField = $("#movie option:selected").text();
 
     if (!movieField || !bodyField ) {
       return;
     }
     // Constructing a newReview object to hand to the database
     var newReview = {
-      title: movieSelect
-        .val()
-        .trim(),
-      body: bodyInput
-        .val()
-        .trim(),
+      title: movieField,
+      body: bodyField
     };
     // Note: The title field is re-purposed to hol the movie id
     //       A seperated MoviesID foreign Key field was orignally designed.
@@ -129,7 +124,7 @@ $(document).ready(function() {
     console.log(rowsToAdd);
     console.log(movieSelect);
     movieSelect.append(rowsToAdd);
-    movieSelect.val(movieId);
+//    movieSelect.value(movieId);
   }
 
   // Creates the movie options in the dropdown

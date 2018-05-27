@@ -12,8 +12,8 @@ module.exports = function (app) {
       order: [
       [Sequelize.fn('RAND')]
     ],
-      limit: 3
-      //   include: [db.Review]
+      limit: 3,
+      include: [db.Review]
     }).catch((err) => console.log(err)).then(function (dbMovie) {
       res.json(dbMovie);
     });
@@ -42,10 +42,8 @@ module.exports = function (app) {
             movie_title: req.params.id
           }
         ]
-
-      }
-
-      //      include: [db.Review]
+      },
+      include: [db.Review]
     }).catch((err) => console.log(err)).then(function (dbMovie) {
       res.json(dbMovie);
       //console.log(res.json(dbMovie.movie_title));
@@ -58,6 +56,6 @@ module.exports = function (app) {
     });
   });
 
-
+  // Note: Deleting movies is not allowed so no route for it at this time.
 
 };
