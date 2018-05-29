@@ -36,11 +36,4 @@ module.exports = function(app) {
   app.get("/cms", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/cms.html"));
   });
-
-  // members route loads member-manager.html
-  // TBD - Review w Martin to see if it is needed by login
-//  app.get("/members", function(req, res) {
-//    res.sendFile(path.join(__dirname, "../public/member-manager.html"));
-//  });
-
 };

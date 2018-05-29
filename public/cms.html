@@ -47,8 +47,9 @@
             <a href="/" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
             <a href="/login" class="w3-bar-item w3-button" style="width:25% !important">LOGIN</a>
             <a href="/random" class="w3-bar-item w3-button" style="width:25% !important">RANDOM MOVIES</a>
-            <a href="/search" class="w3-bar-item w3-button" style="width:25% !important">REVIEWS</a>
-            <a href="/review" class="w3-bar-item w3-button" style="width:25% !important">ADD REVIEW</a>
+            <a href="/search" class="w3-bar-item w3-button" style="width:25% !important">SEARCH</a>  
+            <a href="/review" class="w3-bar-item w3-button" style="width:25% !important">REVIEWS</a>
+            <a href="/cms" class="w3-bar-item w3-button" style="width:25% !important">ADD REVIEW</a>
         </div>
     </div>
 
@@ -65,16 +66,16 @@
 			<div class="col-md-6 offset-md-3">
 				<form id="cms">
 					<div class="form-group">
-						<label for="category">Select Movie:</label>
+						<label for="movie" id="movie-label">Select Movie:</label>
 						<select class="custom-select" id="movie" ></select>
-						<label for="title"><span class= "w3-text-light-grey" id="title">This is a Movie Title!</span></label>
+						<label for="title"><span class= "w3-text-light-grey" id="marque-title">Select a Movie Title!</span></label>
 						<br />
 						<label for="body"></label>
 						<textarea placeholder="Review Body" class="form-control" rows="10" id="body"></textarea>
 						<div class="form-group">
 						</div>
 						<br />
-						<button type="submit" class="btn btn-success submit">Submit</button>
+						<button type="submit" class="btn submit">Submit</button>
 					</div>
 				</form>
 			</div>
