@@ -62,7 +62,7 @@ module.exports = function(app) {
     });
   });
 
-  // PUT route for updating reviews
+  // PUT route for up-dating reviews
   app.put("/api/reviews", function(req, res) {
     db.Review.update(
       req.body,
@@ -74,4 +74,4 @@ module.exports = function(app) {
       res.json(dbReview);
     });
   });
-};
+}
