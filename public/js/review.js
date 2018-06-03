@@ -19,11 +19,18 @@ $(document).ready(function() {
   // A function to handle what happens when the form is submitted to create a new Review
   function handleReviewFormSubmit(event) {
     event.preventDefault();
+  
     // Don't do anything if the name fields hasn't been filled out
     if (!movieSelect.val().trim().trim()) {
       return;
     }
 
+    processReviewForm();
+
+  }
+  
+  function processReviewForm() {
+  
     // The code below handles the case where we want to get blog posts for a specific author
     // Looks for a query param in the url for author_id
     var url = window.location.search;
@@ -34,7 +41,7 @@ $(document).ready(function() {
     }
     // If there's no movieId we just get all reviews as usual
     else {
-      getReviewss();
+      getReviews();
     }
   }
 
@@ -88,7 +95,7 @@ $(document).ready(function() {
  // }
 
   // Getting the initial list of Reviews
-  getReviews();
+  processReviewForm();
 
   // A function for creating a review vis cms input form. Calls getReviews upon completion
   function inputReview(movie) {
@@ -134,8 +141,11 @@ $(document).ready(function() {
     }
     $.get("/api/reviews" + movieId, function(data) {
       var rowsToAdd = [];
-      for (var i = 0; i < data.length; i++) {
-        rowsToAdd.push(createReviewRow(data[i]));
+      if (data != null)
+      {
+        for (var i = 0; i < data.length; i++) {
+          rowsToAdd.push(createReviewRow(data[i]));
+        }
       }
       renderReviewList(rowsToAdd);
       movieSelect.val("");

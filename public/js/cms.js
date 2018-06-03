@@ -27,14 +27,17 @@ $(document).ready(function() {
   else if (url.indexOf("?member_id=") !== -1) {
     memberId = url.split("=")[1];
     getMemberData(memberId, "member");
+    getReviews();
   }
   // Otherwise if we have an movie_id in our url, preset the movie select box to be our Movie
   else if (url.indexOf("?movie_id=") !== -1) {
     movieId = url.split("=")[1];
+    getMovie(movieId);
   }
-
-  // Getting the movies, and their reviews
-  getMovies();
+  else
+  {
+    getMovies();
+  }
 
   // A function for handling what happens when the form to create a new review is submitted
   function handleFormSubmit(event) {
@@ -152,7 +155,7 @@ $(document).ready(function() {
   function renderMovieList(data) {
     console.log('renderMovieList called');
     if (!data.length) {
-      window.location.href = "/movies";
+      window.location.href = "/cms";
     }
     $(".hidden").removeClass("hidden");
     var rowsToAdd = [];
@@ -171,11 +174,14 @@ $(document).ready(function() {
   function renderMovie(movie) {
     console.log('renderMovie called');
     if (!movie.length) {
-      window.location.href = "/movies";
+      // If for sany reason we did not get movie data, get the MovieID from the URL and call the paga again
+      window.location.href = "/cms/?movie_id=" + movieId;
+      // setting the href above allows the input select dropdown to 
+      // include the prevously requested movie
     }
     $(".hidden").removeClass("hidden");
     var rowToAdd = [];
-    rowToAdd.push(createMovieRow(movie));
+    rowToAdd.push(createMovieRow(movie[0]));
     
     movieSelect.empty();
     console.log(rowToAdd);

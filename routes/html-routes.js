@@ -36,4 +36,10 @@ module.exports = function(app) {
   app.get("/cms", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/cms.html"));
   });
+
+ // search route loads cms.html (whioh handles adding a review)
+ app.get("/cms/?movie_id", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/cms.html"));
+});
+
 };

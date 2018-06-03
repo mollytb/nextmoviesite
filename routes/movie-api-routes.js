@@ -40,7 +40,10 @@ module.exports = function (app) {
           },
           {
             movie_title: req.params.id
-          }
+          },
+          {
+            id: req.params.id
+          } 
         ]
       },
       include: [db.Review]
