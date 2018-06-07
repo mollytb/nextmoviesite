@@ -7,7 +7,7 @@
       "required": true
     },
     "MONGODB_URI": {
-      "required": true
+      "required": false
     }
   },
   "formation": {
