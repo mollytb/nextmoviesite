@@ -4,7 +4,7 @@
   },
   "env": {
     "CLEARDB_DATABASE_URL": {
-      "required": true
+      "required": false
     },
     "MONGODB_URI": {
       "required": false
